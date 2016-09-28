@@ -1,0 +1,17 @@
+{
+  "name": "test-forforce",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Anton Golovin <golovin.anton.sergeevich@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Anton-Golovin/FORFORCE-Website",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
