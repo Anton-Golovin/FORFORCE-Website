@@ -3,10 +3,13 @@ var gulp  			 = require('gulp'),
     concat 			 = require('gulp-concat');
     csso             = require('gulp-csso'), 
     filter           = require('gulp-filter'),
+    imagemin         = require('gulp-imagemin'),
     less             = require('gulp-less'),
     mainBowerFiles   = require('gulp-main-bower-files'),
     sourceMaps       = require('gulp-sourcemaps'),
-    uglify           = require('gulp-uglifyjs'), 
+    uglify           = require('gulp-uglifyjs'),
+    spritesmith      = require('gulp.spritesmith'),
+    imageminPngquant = require('imagemin-pngquant'),
     mergeStream      = require('merge-stream'),
     LessAutoprefix   = require('less-plugin-autoprefix');
 
@@ -14,55 +17,57 @@ var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
 
 var path = {
     dist: { //where
-        all: './dist',
-        fonts: './dist/fonts',
-        css: './dist/css',
-        js: './dist/js',
-        img: './dist/img',
-        libs: './dist/libs',
+        all:    './dist/',
+        fonts:  './dist/fonts/',
+        css:    './dist/css/',
+        js:     './dist/js/',
+        img:    './dist/img/',
+        libs:   './dist/libs/',
+        style:   './src/style/',
     },
     src: { //frome
-        fonts: './src/fonts/**/*.*',
-        less: './src/less/**/*.less',
-        style: './src/less/style.less',
-        js: './src/js/**/*.*',
-        img: './src/img/**/*.*',
+        allLess:    './src/style/**/*.less',
+        styleLess:  './src/style/style.less',
+        img:        './src/img/**/*.*',
+        sprite:     './src/img/sprite/*.*',
+        fonts:      './src/fonts/**/*.*',
+        js:         './src/js/**/*.*',
     },
-    bowerJson: './bower.json', //bower
+    bowerJson:  './bower.json', //bower
 };
 
 
 /*GULP WATCH*/
 gulp.task('watch',function () {
-    gulp.watch(path.src.less, ['less:dist']); //watch less
+    gulp.watch(path.src.allLess, ['less:dist']); //watch less
 });
-
-
-/*BUILD ALL*/
-gulp.task('default', [
-    'bower:dist',
-    'less:dist',
-    'fonts:dist'
-]);
-
 
 /*CLEAR ALL*/
-gulp.task('clear:css', function () {  
-    return gulp.src(path.dist.css)
-        .pipe(clean())
-});
+//clear libs
 gulp.task('clear:libs', function () {  
     return gulp.src(path.dist.libs)
         .pipe(clean())
 });
-/*clear fonts*/
+//clear fonts
 gulp.task('clear:fonts', function () {  
     return gulp.src(path.dist.fonts)
         .pipe(clean())
 });
-
+//clear img
+gulp.task('clear:img', function () {  
+    return gulp.src(path.dist.img)
+        .pipe(clean())
+});
 
 /*DIST ALL*/
+gulp.task('default', [
+    'bower:dist',
+    'sprite:dist',
+    'img:dist',
+    'fonts:dist',
+    'less:dist'
+]);
+//dist bower
 gulp.task('bower:dist', ['clear:libs'], function() {
     var filterJS = filter(['**/*.js'], { restore: true });
     var filterCSS = filter(['**/*.css'], { restore: true });
@@ -89,8 +94,9 @@ gulp.task('bower:dist', ['clear:libs'], function() {
         .pipe(filterCSS.restore)
         .pipe(gulp.dest(path.dist.all))
 });
-gulp.task('less:dist', ['clear:css'], function () {
-	return gulp.src(path.src.style) 
+//dist less
+gulp.task('less:dist', function () {
+	return gulp.src(path.src.styleLess) 
     .pipe(sourceMaps.init())
     .pipe(less({
         plugins: [autoprefix]
@@ -98,7 +104,7 @@ gulp.task('less:dist', ['clear:css'], function () {
     .pipe(sourceMaps.write())
     .pipe(gulp.dest(path.dist.css))
 });
-/*dist fonts*/
+//dist fonts
 gulp.task('fonts:dist', ['clear:fonts'], function () {  
     var myFonts = gulp.src(path.src.fonts)
     .pipe(gulp.dest(path.dist.fonts));
@@ -107,4 +113,29 @@ gulp.task('fonts:dist', ['clear:fonts'], function () {
     .pipe(gulp.dest(path.dist.fonts));
 
     return mergeStream(myFonts, bootstrapFonts);
+});
+//dist img
+gulp.task('img:dist', ['clear:img'], function () {
+    return gulp.src([path.src.img, '!./src/img/sprite/*.*'])
+        .pipe(imagemin({
+            progressive: true,
+            use: [imageminPngquant()],
+        }))
+        .pipe(gulp.dest(path.dist.img))
+});
+//dist sprite
+gulp.task('sprite:dist', function() {
+    var spriteData = 
+        gulp.src(path.src.sprite)
+            .pipe(spritesmith({
+                imgName: '../img/sprite.png',
+                cssName: 'sprite.css',
+                algorithm: 'binary-tree',
+                cssVarMap: function(sprite) {
+                    sprite.name = 's-' + sprite.name
+                }
+            }));
+
+    spriteData.img.pipe(gulp.dest(path.dist.img));
+    spriteData.css.pipe(gulp.dest(path.dist.style));
 });
