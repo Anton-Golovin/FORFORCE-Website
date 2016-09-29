@@ -28,6 +28,7 @@ var path = {
     src: { //frome
         allLess:    './src/style/**/*.less',
         styleLess:  './src/style/style.less',
+        imgFolder: 	'./src/img/',
         img:        './src/img/**/*.*',
         sprite:     './src/img/sprite/*.*',
         fonts:      './src/fonts/**/*.*',
@@ -60,9 +61,14 @@ gulp.task('clear:img', function () {
 });
 
 /*DIST ALL*/
-gulp.task('default', [
+gulp.task('default', function() {
+    console.log('Инструкция по сборке');
+    console.log('1) Создать спрайты -> gulp sprite:dist');
+    console.log('2) Запустить сборку -> gulp dist:all');
+});
+
+gulp.task('dist:all', [
     'bower:dist',
-    'sprite:dist',
     'img:dist',
     'fonts:dist',
     'less:dist'
@@ -136,6 +142,6 @@ gulp.task('sprite:dist', function() {
                 }
             }));
 
-    spriteData.img.pipe(gulp.dest(path.dist.img));
+    spriteData.img.pipe(gulp.dest(path.src.imgFolder));
     spriteData.css.pipe(gulp.dest(path.dist.style));
 });
