@@ -2,11 +2,11 @@
 @import (less) "sprite.css";
 
 //Corporate colors
-@base-color: rgb(238, 129, 27);
-@active-base-color: rgb(238, 77, 27);
+@base-color: #ee811b;
+@active-base-color: spin(@base-color, -15);
 
 //Link color
-@active-color: rgb(249, 239, 192);
+@active-color: #f9eebe;
 @hover-color: darken(@active-color, 20%);
 
 //Fonts
@@ -15,13 +15,14 @@
 @font-regular: '@{font-name}Regular';
 @font-bold: '@{font-name}Bold';
 @font-italic: '@{font-name}Italic';
-@base-fonts-color: rgb(0, 0, 0);
-@header-color: rgb(1, 0, 0);
+@base-fonts-color: #000000;
+@header-color: #010000;
 
 
 //block
 @body-min-width: 320px;
 @navigation-width: 86px;
+@navigation-mobile-width: @navigation-width - 25px;
 @content-padding: 0 71px 0 43px;
 @filter-width: 250px;
 
@@ -37,7 +38,12 @@ body {
 	min-width: @body-min-width;
 	font-family: @font-regular;
 }
+//icon and plugin 
+.icon {
+  display: inline-block;
+}
 
+//Base grid
 .wrapper{
 	display:flex;
 	width:100%;
@@ -50,25 +56,52 @@ body {
 	text-align: center;
 	.box-shadow();
 	@media only screen and (max-width : 768px) {
-		width: @navigation-width - 25px;
+		width: @navigation-mobile-width;
 		.box-shadow(@blur:10px; @alpha:0.5);
 	}
 
 	.logo img{
-		padding: 33px 14px;
+		padding: 30px 13px 30px;
 		width: 100%;
 		@media only screen and (max-width : 768px) {
 			padding: 10px 5px;
 		}
 	}
+
+	.main-menu,
+	.extra-menu {
+		list-style: none;
+		padding: 0;
+		a {
+			display: block;
+			padding: 13px 0;
+			&:hover,
+			&.active {
+				background-color: @active-color;
+			}
+		}
+	}
+	.extra-menu {
+		position: absolute;
+		bottom: 0;
+		width: @navigation-width;
+		@media only screen and (max-height : 568px){
+			position: static;
+			width: @navigation-mobile-width;
+		}
+		@media only screen and (max-width : 768px) {
+			width: @navigation-mobile-width;
+		}
+	}
 }
 
-//Base grid
+//Main content
 .main-content {
-	width: 100%;
+	width: calc(~'100% -'@navigation-width);
 	padding: @content-padding;
 	@media only screen and (max-width : 768px) {
 		padding: 0 10px;
+		width: calc(~'100% -'@navigation-mobile-width);
 	}
 
 	.filter {
