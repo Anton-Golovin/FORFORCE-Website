@@ -41,7 +41,8 @@ gulp.task('watch',function () {
 /*BUILD ALL*/
 gulp.task('default', [
     'bower:dist',
-    'less:dist'
+    'less:dist',
+    'fonts:dist'
 ]);
 
 
@@ -52,6 +53,11 @@ gulp.task('clear:css', function () {
 });
 gulp.task('clear:libs', function () {  
     return gulp.src(path.dist.libs)
+        .pipe(clean())
+});
+/*clear fonts*/
+gulp.task('clear:fonts', function () {  
+    return gulp.src(path.dist.fonts)
         .pipe(clean())
 });
 
@@ -91,4 +97,14 @@ gulp.task('less:dist', ['clear:css'], function () {
     }))
     .pipe(sourceMaps.write())
     .pipe(gulp.dest(path.dist.css))
+});
+/*dist fonts*/
+gulp.task('fonts:dist', ['clear:fonts'], function () {  
+    var myFonts = gulp.src(path.src.fonts)
+    .pipe(gulp.dest(path.dist.fonts));
+    
+    var bootstrapFonts = gulp.src('bower_components/bootstrap/fonts/*')
+    .pipe(gulp.dest(path.dist.fonts));
+
+    return mergeStream(myFonts, bootstrapFonts);
 });

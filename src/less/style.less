@@ -1,3 +1,5 @@
+@import "fonts.less";
+
 //Corporate colors
 @base-color: rgb(238, 129, 27);
 @active-base-color: rgb(238, 77, 27);
@@ -6,7 +8,12 @@
 @active-color: rgb(249, 239, 192);
 @hover-color: darken(@active-color, 20%);
 
-//Fonts color
+//Fonts
+@font-name: 'GothamPro';
+@font-path: "../fonts";
+@font-regular: '@{font-name}Regular';
+@font-bold: '@{font-name}Bold';
+@font-italic: '@{font-name}Italic';
 @base-fonts-color: rgb(0, 0, 0);
 @header-color: rgb(1, 0, 0);
 
@@ -18,10 +25,17 @@
 @content-padding-left: 43px;
 @filter-width: 250px;
 
+//mixin
+.box-shadow (@x: 5px, @y: 0px, @blur: 29px, @alpha: 1) {
+	box-shadow: @x @y @blur rgba(179, 179, 179, @alpha);
+}
+
+/*STYLE*/
 html,
 body {
 	height: 100%;
 	min-width: @body-min-width;
+	font-family: @font-regular;
 }
 
 .wrapper{
@@ -31,13 +45,20 @@ body {
 	min-height: 100%;
 }
 
+//Navigation
 .navigation {
 	width: @navigation-width;
 	text-align: center;
 	display:table-cell;
-	box-shadow: 5px 0px 29px 0px #b3b3b3;
+	.box-shadow();
+	@media only screen and (max-width : 768px) {
+		width: @navigation-width - 25px;
+		.box-shadow(@blur:10px; @alpha:0.5);
+	}
 }
-.content {
+
+//Base grid
+.main-content {
 	display:table-cell;
 	& > * {
 		vertical-align: top;
@@ -55,18 +76,13 @@ body {
 	.footer {
 		padding: 0 @content-padding-right 0 @content-padding-left;
 	}
-}
-
-
-@media only screen and (max-width : 768px) {
-.navigation {
-	width: @navigation-width - 25px;
-}
-	.content .filter,
-	.content .catalog,
-	.content .footer {
-		float: none;
-		width: 100%;
-		padding: 0 30px;
+	@media only screen and (max-width : 768px) {
+		.filter,
+		.catalog,
+		.footer {
+			float: none;
+			width: 100%;
+			padding: 0 10px;
+		}
 	}
 }
