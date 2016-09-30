@@ -1,0 +1,44 @@
+/*MEDIA*/	
+@media only screen and (max-width : 1024px) {
+	.aside {
+		padding: 0 10px;
+		width: calc(@filter-width ~'- 50px');
+	}
+}
+@media only screen and (max-width : 767px) {
+	.navigation {
+		width: @navigation-mobile-width;
+		.box-shadow(@blur:10px; @alpha:0.5);
+		.logo img {
+			padding: 10px 5px;
+		}			
+		.extra-menu {				
+			width: @navigation-mobile-width;
+		}
+	}		
+	.main-content {
+		padding: 30px 10px;
+		width: calc(~'100% -'@navigation-mobile-width);
+	}
+	.aside  {
+		float: none;
+		width: 100%;
+		padding: 0;
+		.btn-collapse {
+			display: block !important;
+		}
+		#filter {
+			.filter-element .palitra {
+				max-width: none;
+			}
+			.filter-element > li {
+				display: inline-block;
+				vertical-align: top;
+			}
+		}
+	}
+	.catalog {
+		float: none;
+		width: 100%;
+	}
+}

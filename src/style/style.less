@@ -35,17 +35,10 @@ i {
 	width: @navigation-width;
 	text-align: center;
 	.box-shadow();
-	@media only screen and (max-width : 768px) {
-		width: @navigation-mobile-width;
-		.box-shadow(@blur:10px; @alpha:0.5);
-	}
 
 	.logo img{
 		padding: 30px 13px 30px;
 		width: 100%;
-		@media only screen and (max-width : 768px) {
-			padding: 10px 5px;
-		}
 	}
 
 	.main-menu,
@@ -64,10 +57,6 @@ i {
 		width: @navigation-width;
 		@media only screen and (max-height : 568px){
 			position: static;
-			width: @navigation-mobile-width;
-		}
-		@media only screen and (max-width : 768px) {
-			width: @navigation-mobile-width;
 		}
 	}
 }
@@ -76,23 +65,29 @@ i {
 .main-content {
 	width: calc(~'100% -'@navigation-width);
 	padding: @content-padding;
-	@media only screen and (max-width : 768px) {
-		padding: 0 10px;
-		width: calc(~'100% -'@navigation-mobile-width);
-	}
 }
 
 //Filter
-.filter {
+.aside {
 	float: left;
 	width: @filter-width;
 	padding: 0 44px;
-	@media only screen and (max-width : 768px) {
-		float: none;
+	.btn-collapse {
+		display: none;
 		width: 100%;
-		padding: 40px 0;
+		text-align: left;
+		background-color: @active-color;
+		margin-bottom: 10px;
+		&:last-of-type {
+			margin-bottom: 40px;
+		}
+		.glyphicon {
+			float: right;
+			top: 3px;
+		}
 	}
-	ul {
+	#filter,
+	#filter ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -137,8 +132,7 @@ i {
 .catalog {
 	display: inline-block;
 	width: calc(~'100% -'@filter-width);
-	@media only screen and (max-width : 768px) {
-		float: none;
-		width: 100%;
-	}
 }
+
+
+@import (less) "elements/media.less";
