@@ -1,0 +1,12 @@
+//mixin
+.box-shadow (@x: 5px, @y: 0px, @blur: 29px, @alpha: 1) {
+	box-shadow: @x @y @blur rgba(179, 179, 179, @alpha);
+}
+.hover-and-active () {
+	&.active {
+		background-color: @active-color;
+	}
+	&:hover {
+		background-color: @hover-color;
+	}
+}

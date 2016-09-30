@@ -1,35 +1,8 @@
-@import (less) "fonts.less";
+@import (less) "elements/variables.less";
+@import (less) "elements/mixin.less";
+@import (less) "elements/fonts.less";
 @import (less) "sprite.css";
 
-//Corporate colors
-@base-color: #ee811b;
-@active-base-color: spin(@base-color, -15);
-
-//Link color
-@active-color: #f9eebe;
-@hover-color: darken(@active-color, 20%);
-
-//Fonts
-@font-name: 'GothamPro';
-@font-path: "../fonts";
-@font-regular: '@{font-name}Regular';
-@font-bold: '@{font-name}Bold';
-@font-italic: '@{font-name}Italic';
-@base-fonts-color: #000000;
-@header-color: #010000;
-
-
-//block
-@body-min-width: 320px;
-@navigation-width: 86px;
-@navigation-mobile-width: @navigation-width - 25px;
-@content-padding: 0 71px 0 43px;
-@filter-width: 250px;
-
-//mixin
-.box-shadow (@x: 5px, @y: 0px, @blur: 29px, @alpha: 1) {
-	box-shadow: @x @y @blur rgba(179, 179, 179, @alpha);
-}
 
 /*STYLE*/
 html,
@@ -37,10 +10,17 @@ body {
 	height: 100%;
 	min-width: @body-min-width;
 	font-family: @font-regular;
+	font-size: @font-size;
 }
-//icon and plugin 
+//icon and fonts 
 .icon {
   display: inline-block;
+}
+b {
+    font-family: @font-bold;
+}
+i {
+    font-family: @font-italic;
 }
 
 //Base grid
@@ -75,10 +55,7 @@ body {
 		a {
 			display: block;
 			padding: 13px 0;
-			&:hover,
-			&.active {
-				background-color: @active-color;
-			}
+			.hover-and-active();
 		}
 	}
 	.extra-menu {
@@ -103,21 +80,65 @@ body {
 		padding: 0 10px;
 		width: calc(~'100% -'@navigation-mobile-width);
 	}
+}
 
-	.filter {
-		float: left;
-		width: @filter-width;
-	}
-	.catalog {
-		display: inline-block;
-		width: calc(~'100% -'@filter-width);
-	}
+//Filter
+.filter {
+	float: left;
+	width: @filter-width;
+	padding: 0 44px;
 	@media only screen and (max-width : 768px) {
-		.filter,
-		.catalog,
-		.footer {
-			float: none;
-			width: 100%;
+		float: none;
+		width: 100%;
+		padding: 40px 0;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		.filter-section {
+			padding-bottom: 30px;
 		}
+		.filter-name {
+			display: block;
+			padding: 5px 15px;
+			font-size: 14px;
+			color: @header-color;
+			text-transform: uppercase; 
+		}
+		.filter-element > li {
+			padding: 2px 0;
+			a{
+				display: inline-block;	
+				padding: 5px 15px;
+				color: @base-fonts-color;
+				text-decoration: none;
+				.hover-and-active();
+			}
+		}
+		.filter-element .palitra {
+			display: inline-block;
+			max-width: 175px;
+			padding: 5px 15px;
+			font-size: 0;
+			.icon {
+				width: 21px;
+				height: 21px;
+				padding: 0;
+				margin: 2px 2px 0 0;
+				&.active {
+					border: 1px solid #d5d5d5; 
+				}
+			}
+		}
+	}
+}
+//Catalog
+.catalog {
+	display: inline-block;
+	width: calc(~'100% -'@filter-width);
+	@media only screen and (max-width : 768px) {
+		float: none;
+		width: 100%;
 	}
 }
