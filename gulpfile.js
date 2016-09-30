@@ -64,10 +64,10 @@ gulp.task('clear:img', function () {
 gulp.task('default', function() {
     console.log('Инструкция по сборке');
     console.log('1) Создать спрайты -> gulp sprite:dist');
-    console.log('2) Запустить сборку -> gulp dist:all');
+    console.log('2) Запустить сборку -> gulp all:dist');
 });
 
-gulp.task('dist:all', [
+gulp.task('all:dist', [
     'bower:dist',
     'img:dist',
     'fonts:dist',
