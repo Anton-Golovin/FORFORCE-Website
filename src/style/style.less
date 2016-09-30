@@ -25,14 +25,15 @@ i {
 
 //Base grid
 .wrapper{
-	display:flex;
-	width:100%;
+	display: table;
+	width: 100%;
 	min-height: 100%;
 }
 
-//Navigation
-.navigation {
-	width: @navigation-width;
+//header
+.header {
+	display: table-cell;
+	width: @header-width;
 	text-align: center;
 	.box-shadow();
 
@@ -54,30 +55,32 @@ i {
 	.extra-menu {
 		position: absolute;
 		bottom: 0;
-		width: @navigation-width;
+		width: @header-width;
 		@media only screen and (max-height : 568px){
 			position: static;
 		}
 	}
 }
 
-//Main content
-.main-content {
-	width: calc(~'100% -'@navigation-width);
-	padding: @content-padding;
+//Main
+.main {
+	display: table-cell;
+	width: calc(~'100% -'@header-width);
+	padding-top: @main-padding-top;
 }
 
 //Filter
-.aside {
+.main-asside {
 	float: left;
 	width: @filter-width;
 	padding: 0 44px;
 	.btn-collapse {
 		display: none;
 		width: 100%;
-		text-align: left;
-		background-color: @active-color;
 		margin-bottom: 10px;
+		text-align: left;
+		color: @btn-color;
+		background-color: @active-color;
 		&:last-of-type {
 			margin-bottom: 40px;
 		}
@@ -128,11 +131,17 @@ i {
 		}
 	}
 }
-//Catalog
-.catalog {
-	display: inline-block;
+//main-content
+.main-content {
+	float: left;
 	width: calc(~'100% -'@filter-width);
+	padding-right: @main-padding-right;
 }
 
+.main-footer {
+	display: block;
+	background: lightgreen;
+	padding: 0 @main-padding-right;
+}
 
 @import (less) "elements/media.less";
