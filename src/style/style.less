@@ -194,7 +194,7 @@ i {
 				width: 200px;
 				border: none;
 				font-family: @font-italic;
-				border-bottom: 1px solid #787878;
+				border-bottom: @border;
 			}
 			*:focus {
 				outline: none;
@@ -219,6 +219,7 @@ i {
 		padding-top: 27px;
 		ul {
 			padding-top: 15px;
+			padding-bottom: 45px;
 			font-size: @font-size-text;
 		}
 		ul li{
@@ -235,6 +236,27 @@ i {
 					padding-left: 5px;
 					font-size: 15px;
 					opacity: 0.5;
+				}
+			}
+		}
+	}
+	.catalog-content {
+		margin: 0 -15px;
+		max-width: 1150px;
+		overflow: hidden;
+		padding: 0 0 0 15px;
+		.content-item {
+			a{
+				display: block;
+				margin-bottom: 45px;
+				img {
+					width: 100%;
+					padding-bottom: 20px;
+				}
+				span.item-caption {
+					font-size: 20px;
+					font-family: @font-bold;
+					border-bottom: @border;
 				}
 			}
 		}
