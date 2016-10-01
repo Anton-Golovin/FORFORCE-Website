@@ -12,7 +12,9 @@
 }
 @media only screen and (max-width : 1024px) {
 	.main-favorit {
-		padding-right: @main-mob-padding; 
+		ul li {
+			padding-right: @main-mob-padding; 
+		}
 	}
 	.main-asside {
 		padding: 0 @main-mob-padding;
@@ -49,7 +51,8 @@
 	.main-asside  {
 		float: none;
 		width: 100%;
-		padding: 0;
+		padding: 0;    
+		margin-top: -30px;
 		.btn-collapse {
 			display: block !important;
 		}

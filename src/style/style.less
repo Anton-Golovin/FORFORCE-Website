@@ -14,13 +14,19 @@ body {
 }
 //icon and fonts 
 .icon {
-  display: inline-block;
+	display: inline-block;
+}
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
 }
 b {
-    font-family: @font-bold;
+	font-family: @font-bold;
 }
 i {
-    font-family: @font-italic;
+	font-family: @font-italic;
 }
 
 //Base grid
@@ -71,11 +77,26 @@ i {
 }
 
 .main-favorit {
-	padding-right: @main-padding-right; 
+	max-height: 30px;
 	text-align: right;
 	ul li{
 		list-style: none;
 		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+		padding-right: @main-padding-right; 
+		span {
+			display: block;
+			font-size: 12px;
+		}
+		.icon-s-fav-like span {
+			padding-top: 12px;
+			color: #fff;
+		}
+		.icon-s-fav-star span {
+			padding-top: 40px;
+			color: @base-color;
+		}
 	}
 }
 //Filter
@@ -87,13 +108,13 @@ i {
 	padding-right: @main-padding-left - 25px;
 	.btn-collapse {
 		display: none;
-		width: 100%;
+		width: 100px;    
+		padding: 1px 5px;
 		margin-bottom: 10px;
 		text-align: left;
-		color: @btn-color;
+		color: @base-color;
 		background-color: #fff;
-		border: 1px solid #636363;
-		border-radius: 0;
+		border: 2px solid @base-color;  
 		&:last-of-type {
 			margin-bottom: 20px;
 		}
@@ -157,13 +178,16 @@ i {
 		}
 		.h1 {
 			margin: 0; 
-			padding-right: 30px;
+			padding-right: 50px;
 			color: @header-color;
 			font-size: 38px;
 			font-family: @font-bold;
 		}
 		.search {
-			padding-left: 30px;
+			.glyphicon-search {
+				font-weight: bold;
+				color: #787878;
+			}
 			#search-input {
 				width: 200px;
 				border: none;
@@ -177,6 +201,7 @@ i {
 		.popular {
 			float: right;
 			padding-top: 21px;
+			padding-right: 50px;
 			ul, 
 			li{
 				list-style: none;

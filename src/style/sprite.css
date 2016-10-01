@@ -18,55 +18,67 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 */
 .icon-s-adv {
   background-image: url(../img/sprite.png);
-  background-position: 0px 0px;
+  background-position: 0px -71px;
   width: 29px;
   height: 30px;
 }
 .icon-s-calc {
   background-image: url(../img/sprite.png);
-  background-position: -84px 0px;
+  background-position: -106px -29px;
   width: 24px;
   height: 30px;
 }
+.icon-s-fav-like {
+  background-image: url(../img/sprite.png);
+  background-position: -53px 0px;
+  width: 53px;
+  height: 54px;
+}
+.icon-s-fav-star {
+  background-image: url(../img/sprite.png);
+  background-position: 0px 0px;
+  width: 53px;
+  height: 71px;
+}
 .icon-s-loca {
   background-image: url(../img/sprite.png);
-  background-position: -24px -56px;
+  background-position: 0px -101px;
   width: 23px;
   height: 30px;
 }
 .icon-s-man {
   background-image: url(../img/sprite.png);
-  background-position: -30px -30px;
+  background-position: -87px -71px;
   width: 19px;
   height: 19px;
 }
 .icon-s-page {
   background-image: url(../img/sprite.png);
-  background-position: 0px -56px;
+  background-position: -106px -59px;
   width: 24px;
   height: 30px;
 }
 .icon-s-paint {
   background-image: url(../img/sprite.png);
-  background-position: 0px -30px;
+  background-position: -57px -71px;
   width: 30px;
   height: 26px;
 }
 .icon-s-planet {
   background-image: url(../img/sprite.png);
-  background-position: -84px -30px;
+  background-position: -23px -101px;
   width: 20px;
   height: 20px;
 }
 .icon-s-roll {
   background-image: url(../img/sprite.png);
-  background-position: -57px 0px;
+  background-position: -106px 0px;
   width: 27px;
   height: 29px;
 }
 .icon-s-serch {
   background-image: url(../img/sprite.png);
-  background-position: -29px 0px;
+  background-position: -29px -71px;
   width: 28px;
   height: 28px;
 }
