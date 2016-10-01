@@ -223,18 +223,19 @@ i {
 		}
 		ul li{
 			display: inline-block;
-			margin-bottom: 2px;
+			margin-bottom: 4px;
 			.hover-and-active(@decor:line-through);
 			a {
 				display: block;
 				padding: @filter-li-a-padding;
 				color: @base-fonts-color;
 				background-color: @active-color;
-			}
-			.i-close {
-				padding-left: 5px;
-				font-size: 15px;
-				opacity: 0.5;
+				&:after {
+					content:'✖';
+					padding-left: 5px;
+					font-size: 15px;
+					opacity: 0.5;
+				}
 			}
 		}
 	}
