@@ -3,11 +3,14 @@
 	box-shadow: @x @y @blur rgba(179, 179, 179, @alpha);
 }
 
-.hover-and-active () {
+.hover-and-active (@decor: 'none') {
 	&.active {
 		background-color: @active-color;
 	}
 	&:hover {
 		background-color: @hover-color;
+		span:first-child {
+			text-decoration: @decor;
+		}
 	}
 }

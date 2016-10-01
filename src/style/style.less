@@ -4,7 +4,7 @@
 @import (less) "sprite.css";
 
 
-/*STYLE*/
+/*BASE STYLE*/
 html,
 body {
 	height: 100%;
@@ -12,18 +12,23 @@ body {
 	font-family: @font-regular;
 	font-size: @font-size;
 }
-//icon and fonts 
 .icon {
 	display: inline-block;
 }
-a {
+a,
+a:hover,
+a:focus {
+	color: @base-fonts-color;
 	text-decoration: none;
-	&:hover {
-		text-decoration: none;
-	}
+}
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 b {
 	font-family: @font-bold;
+	text-transform: uppercase;
 }
 i {
 	font-family: @font-italic;
@@ -50,7 +55,6 @@ i {
 
 	.header-first,
 	.header-second {
-		list-style: none;
 		padding: 0;
 		a {
 			display: block;
@@ -77,10 +81,9 @@ i {
 }
 
 .main-favorit {
-	max-height: 30px;
+	max-height: 50px;
 	text-align: right;
 	ul li{
-		list-style: none;
 		display: inline-block;
 		vertical-align: top;
 		text-align: center;
@@ -125,7 +128,6 @@ i {
 	}
 	#filter,
 	#filter ul {
-		list-style: none;
 		margin: 0;
 		padding: 0;
 		.filter-section {
@@ -142,7 +144,7 @@ i {
 			padding: 2px 0;
 			a{
 				display: inline-block;	
-				padding: 5px 15px;
+				padding: @filter-li-a-padding;
 				color: @base-fonts-color;
 				text-decoration: none;
 				.hover-and-active();
@@ -204,13 +206,35 @@ i {
 			padding-right: 50px;
 			ul, 
 			li{
-				list-style: none;
 				padding-left: 8px;
 				a {
 					margin: 0 8px;
 					color: @base-fonts-color;
 					border-bottom: 1px dashed #000080;
 				}
+			}
+		}
+	}
+	.catalog-resfilter {
+		padding-top: 27px;
+		ul {
+			padding-top: 15px;
+			font-size: @font-size-text;
+		}
+		ul li{
+			display: inline-block;
+			margin-bottom: 2px;
+			.hover-and-active(@decor:line-through);
+			a {
+				display: block;
+				padding: @filter-li-a-padding;
+				color: @base-fonts-color;
+				background-color: @active-color;
+			}
+			.i-close {
+				padding-left: 5px;
+				font-size: 15px;
+				opacity: 0.5;
 			}
 		}
 	}
