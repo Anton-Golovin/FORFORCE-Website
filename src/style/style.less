@@ -8,17 +8,30 @@
 html,
 body {
 	height: 100%;
+	overflow: hidden;
 	min-width: @body-min-width;
 	font-family: @font-regular;
 	font-size: @font-size;
+}
+body {
+	overflow: auto;
 }
 .icon {
 	display: inline-block;
 }
 .btn-style {
-		color: @base-color;
-		background-color: #fff;
-		border: 2px solid @base-color; 
+	color: @base-color;
+	background-color: #fff;
+	border: 2px solid @base-color; 
+}
+.h1 {
+	margin: 0; 
+	font-size: 38px;
+	font-family: @font-bold;
+}
+.h2 {
+	font-size: 24px;
+	font-family: @font-bold;
 }
 a,
 a:hover,
@@ -41,16 +54,18 @@ i {
 
 //Base grid
 .wrapper{
-	display: table;
+	display: flex;
 	width: 100%;
 	min-height: 100%;
 }
 
 //header
 .header {
-	display: table-cell;
+	flex: 1;
 	width: @header-width;
+	min-height: 100%;
 	text-align: center;
+	position: fixed;
 	.box-shadow();
 
 	.logo img{
@@ -71,18 +86,15 @@ i {
 		position: absolute;
 		bottom: 0;
 		width: @header-width;
-		@media only screen and (max-height : 568px){
-			position: static;
-		}
 	}
 }
 
 //Main
 .main {
-	display: table-cell;
-	width: calc(~'100% -'@header-width);
+	overflow: hidden;
+	margin-left: @header-width;
 	padding-top: @main-padding-top;
-    vertical-align: top;
+	vertical-align: top;    
 }
 
 .main-favorit {
@@ -184,11 +196,8 @@ i {
 
 		}
 		.h1 {
-			margin: 0; 
 			padding-right: 30px;
 			color: @header-color;
-			font-size: 38px;
-			font-family: @font-bold;
 		}
 		.search {
 			.glyphicon-search {
@@ -246,24 +255,28 @@ i {
 		}
 	}
 	.catalog-content {
-		margin: 0 -15px;
-		max-width: 1150px;
 		overflow: hidden;
-		padding: 0 0 0 15px;
+		padding-bottom: 80px;
 		.content-item {
 			a{
 				display: block;
 				margin-bottom: 45px;
-				img {
-					width: 100%;
-					padding-bottom: 20px;
+				.item-img {
+					.item-img();
 				}
-				span.item-caption {
-					font-size: 20px;
-					font-family: @font-bold;
-					border-bottom: @border;
+				.item-caption {
+					.item-caption();
 				}
 			}
+
+		}
+	}
+	.catalog-viewed {
+		.item-img {
+			.item-img();
+		}
+		.item-caption {
+			.item-caption(@size: @font-size-text);
 		}
 	}
 }
@@ -271,8 +284,11 @@ i {
 .main-footer {
 	display: block;
 	background: lightgreen;
+	margin-top: 75px;
 	padding: 0 @main-padding-right;
 	padding-left: @main-padding-left - 10px;
 }
 
+
+@import (less) "elements/plugins.less";
 @import (less) "elements/media.less";

@@ -1,0 +1,32 @@
+.owl-carousel {
+	margin-top: 40px;
+	.owl-dots {
+		text-align: center;
+		.owl-dot {
+			display: inline-block;
+			height: 7px;
+			width: 7px;
+			background: black;
+			border: 1px solid black;
+			border-radius: 50%;
+			margin: 20px 4px;
+			&.active {
+				background-color: #fff;
+			}
+		}
+	}
+	.owl-nav div {
+		position: absolute;
+		top: 50%;
+		width: 15px;
+		height: 25px;
+		margin-top: -50px;
+		&.owl-prev {
+			left: -30px;
+		}
+		&.owl-next {
+			right: -30px;
+			transform: scale(-1, 1);
+		}
+	}
+}
