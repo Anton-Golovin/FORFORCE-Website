@@ -24,14 +24,14 @@ body {
 	background-color: #fff;
 	border: 2px solid @base-color; 
 }
-.h1 {
-	margin: 0; 
+.h1, 
+.h2 {
 	font-size: 38px;
 	font-family: @font-bold;
+	.clear-p-m();
 }
 .h2 {
 	font-size: 24px;
-	font-family: @font-bold;
 }
 a,
 a:hover,
@@ -41,8 +41,7 @@ a:focus {
 }
 ul {
 	list-style: none;
-	padding: 0;
-	margin: 0;
+	.clear-p-m();
 }
 b {
 	font-family: @font-bold;
@@ -200,19 +199,7 @@ i {
 			color: @header-color;
 		}
 		.search {
-			.glyphicon-search {
-				font-weight: bold;
-				color: #787878;
-			}
-			#search-input {
-				width: 200px;
-				border: none;
-				font-family: @font-italic;
-				border-bottom: @border;
-			}
-			*:focus {
-				outline: none;
-			}
+			.form-input-style();
 		}
 		.popular {
 			float: right;
@@ -283,10 +270,63 @@ i {
 
 .main-footer {
 	display: block;
-	background: lightgreen;
+	background: #f1f1f1;
 	margin-top: 75px;
-	padding: 0 @main-padding-right;
+	padding: 50px @main-padding-right;
 	padding-left: @main-padding-left - 10px;
+	.full-logo {
+		padding-bottom: 35px;
+		img:last-child {
+			margin-left: -10px;
+		}
+	}
+	.footer-about {
+		.disabled-text();
+	}
+	.footer-nav {
+		a {
+			display: inline-block;
+			margin-bottom: 5px;
+			text-decoration: underline;
+			&:hover {
+				opacity: 0.8;
+			}
+			b {
+				display: inline-block;
+				font-size: @font-size-text;
+				text-transform: none;
+				text-decoration: underline;
+				margin-bottom: 5px; 
+			}
+		}
+		.link p {
+			.clear-p-m();
+		}
+	}
+	.footer-social {
+		p {
+			display: block;
+			font-size: @font-size + 1px;
+			.clear-p-m();
+			.icon {
+				margin: 10px 1px 30px;
+			}
+		}
+	}
+	.footer-signature {
+		margin-top: 40px;
+		.news {
+			padding-right: 0;
+			color: @base-fonts-color;
+			.form-input-style(@width:auto; @bg-color:#f1f1f1; @font-s: @font-size;);
+			input {
+				max-width: 140px;
+			}
+		}
+		p {
+			.disabled-text();
+		}
+	}
 }
 
 

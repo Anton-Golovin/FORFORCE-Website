@@ -71,7 +71,8 @@ gulp.task('all:dist', [
     'bower:dist',
     'img:dist',
     'fonts:dist',
-    'less:dist'
+    'less:dist',
+    'js:dist'
 ]);
 //dist bower
 gulp.task('bower:dist', ['clear:libs'], function() {
@@ -144,4 +145,13 @@ gulp.task('sprite:dist', function() {
 
     spriteData.img.pipe(gulp.dest(path.src.imgFolder));
     spriteData.css.pipe(gulp.dest(path.dist.style));
+});
+/*dist js*/
+gulp.task('js:dist', function () {
+    return gulp.src(path.src.js)
+    .pipe(concat('script.min.js'))
+    .pipe(sourceMaps.init())
+    .pipe(uglify()) //compression js
+    .pipe(sourceMaps.write())
+    .pipe(gulp.dest(path.dist.js))
 });
