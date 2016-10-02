@@ -41,6 +41,7 @@ var path = {
 /*GULP WATCH*/
 gulp.task('watch',function () {
     gulp.watch(path.src.allLess, ['less:dist']); //watch less
+    gulp.watch(path.src.js, ['js:dist']); //watch js
 });
 
 /*CLEAR ALL*/

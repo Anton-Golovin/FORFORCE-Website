@@ -1,4 +1,4 @@
-;(function catalogViewed() {
+(function catalogViewed() {
 	$(document).ready(function(){
 		$(".owl-carousel").owlCarousel({
 			nav:false,
