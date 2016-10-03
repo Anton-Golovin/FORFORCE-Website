@@ -95,18 +95,12 @@
 	}
 }
 
-@media only screen and (max-width : 375px) {
-	.content-item {
-		width: 100%;
-	}
-}
-
-@media only screen and (max-height : 590px){
+@media only screen and (max-width : 375px), only screen and (max-height : 590px) {
 	.header {
 		position: static !important;
 		.header-second {
 			position: static !important;
-			padding-top: 20px;
+			padding-top: 10px;
 		}
 	}
 	.main {
@@ -114,5 +108,10 @@
 		.main-footer {
 			.box-shadow-inset(@blur: 19px, @alpha: 0.5)
 		}
+	}
+}
+@media only screen and (max-width : 330px) {
+	.content-item {
+		width: 100%;
 	}
 }

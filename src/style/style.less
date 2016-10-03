@@ -8,13 +8,9 @@
 html,
 body {
 	height: 100%;
-	overflow: hidden;
 	min-width: @body-min-width;
 	font-family: @font-regular;
 	font-size: @font-size;
-}
-body {
-	overflow: auto;
 }
 .icon {
 	display: inline-block;
@@ -212,6 +208,7 @@ i {
 					margin: 0 8px;
 					color: @base-fonts-color;
 					border-bottom: 1px dashed #000080;
+					.hover-opaciti();
 				}
 			}
 		}
@@ -270,7 +267,7 @@ i {
 
 .main-footer {
 	display: block;
-	background: #f1f1f1;
+	background: @footer-color;
 	margin-top: 75px;
 	padding: 50px @main-padding-right;
 	padding-left: @main-padding-left - 10px;
@@ -288,9 +285,7 @@ i {
 			display: inline-block;
 			margin-bottom: 5px;
 			text-decoration: underline;
-			&:hover {
-				opacity: 0.8;
-			}
+			.hover-opaciti();
 			b {
 				display: inline-block;
 				font-size: @font-size-text;
@@ -310,6 +305,11 @@ i {
 			.clear-p-m();
 			.icon {
 				margin: 10px 1px 30px;
+				border-radius: 50%;
+				background-color: @footer-color;
+				&:hover {
+					background-color: @footer-hover-color;
+				}
 			}
 		}
 	}
