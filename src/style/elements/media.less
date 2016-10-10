@@ -20,10 +20,10 @@
 	}
 	.main-asside {
 		padding: 0 @main-mob-padding;
-		width: calc(@filter-width ~'- 50px');
+		width: ~'calc(@{filter-width} - 50px)';
 	}
 	.main-catalog {
-		width: calc(~'100% -' @filter-width - 50px);
+		width: ~'calc(100% - (@{filter-width} - 50px))';
 		padding-right: 15px;
 		.catalog-heder > * {
 			display: block;
